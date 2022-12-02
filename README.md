@@ -278,18 +278,74 @@ CHAOS DELEGATE ID                    CHAOS DELEGATE NAME   STATUS   REGISTRATION
 f57d748b-f09a-4a9e-88f3-5c860103f7ca Self-Agent            ACTIVE   REGISTERED
 ```
 
-## List Chaos Scenarios
-
-To list the created Chaos Scenarios within a project:
+Connect to chaos delegate:
 
 ```sh
-litmusctl get chaos-scenarios --project-id=""
+litmusctl connect chaos-delegate --name="Litmus-Poc-Agent" --project-id="" --non-interactive
 ```
 
-As we have not run any chaos scenarios yet, this will output something similar:
+This will output something similar below. You can also see the new delegate on ChaosCenter at <http://localhost:9091/> or running `litmusctl get chaos-delegates --project-id="7f8a0a09-68db-48a7-b2df-92b2f5a5f521"`
 
 ```sh
-CHAOS SCENARIO ID     CHAOS SCENARIO NAME     CHAOS SCENARIO TYPE     NEXT SCHEDULE     CHAOS DELEGATE ID  CHAOS DELEGATE NAME     LAST UPDATED BY
+🏃 Running prerequisites check....
+🔑 clusterrole ✅
+🔑 clusterrolebinding ✅
+🌟 Sufficient permissions. Installing the Chaos Delegate...
 
-Showing 0 of 0 Chaos Scenarios
+📌 Summary 
+Chaos Delegate Name: Litmus-Poc-Agent
+Chaos Delegate Description: ---
+Chaos Delegate SSL/TLS Skip: false
+Platform Name: Others
+Namespace:  litmus
+Service Account:  litmus
+
+Installation Mode: cluster
+Applying YAML:
+http://localhost:9091/api/file/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVyX2lkIjoiZjhjZDFlYzAtMzk0OC00NTAwLWE0YzYtYWY2ZWRhN2I5MTk1In0.6l6t6vmxdM1SyHCXCKtjT5IImheThOOlKRJylz_mhE8.yaml
+namespace/litmus unchanged
+serviceaccount/litmus configured
+customresourcedefinition.apiextensions.k8s.io/clusterworkflowtemplates.argoproj.io configured
+customresourcedefinition.apiextensions.k8s.io/cronworkflows.argoproj.io configured
+customresourcedefinition.apiextensions.k8s.io/workflows.argoproj.io configured
+customresourcedefinition.apiextensions.k8s.io/workflowtemplates.argoproj.io configured
+customresourcedefinition.apiextensions.k8s.io/workflowtasksets.argoproj.io configured
+customresourcedefinition.apiextensions.k8s.io/workflowtaskresults.argoproj.io configured
+deployment.apps/chaos-operator-ce configured
+deployment.apps/chaos-exporter configured
+service/chaos-exporter configured
+service/workflow-controller-metrics configured
+deployment.apps/workflow-controller configured
+serviceaccount/argo configured
+clusterrole.rbac.authorization.k8s.io/argo-cluster-role configured
+clusterrolebinding.rbac.authorization.k8s.io/argo-binding configured
+configmap/agent-config configured
+secret/agent-secret configured
+deployment.apps/subscriber configured
+deployment.apps/event-tracker configured
+customresourcedefinition.apiextensions.k8s.io/chaosengines.litmuschaos.io configured
+customresourcedefinition.apiextensions.k8s.io/chaosexperiments.litmuschaos.io configured
+customresourcedefinition.apiextensions.k8s.io/chaosresults.litmuschaos.io configured
+customresourcedefinition.apiextensions.k8s.io/eventtrackerpolicies.eventtracker.litmuschaos.io configured
+configmap/workflow-controller-configmap configured
+serviceaccount/litmus-admin configured
+clusterrole.rbac.authorization.k8s.io/litmus-admin configured
+clusterrolebinding.rbac.authorization.k8s.io/litmus-admin configured
+serviceaccount/argo-chaos configured
+clusterrole.rbac.authorization.k8s.io/chaos-cluster-role configured
+clusterrolebinding.rbac.authorization.k8s.io/chaos-cluster-role-binding configured
+clusterrole.rbac.authorization.k8s.io/subscriber-cluster-role configured
+clusterrolebinding.rbac.authorization.k8s.io/subscriber-cluster-role-binding configured
+serviceaccount/event-tracker-sa configured
+clusterrole.rbac.authorization.k8s.io/event-tracker-cluster-role configured
+clusterrolebinding.rbac.authorization.k8s.io/event-tracker-clusterole-binding configured
+serviceaccount/litmus-cluster-scope configured
+clusterrole.rbac.authorization.k8s.io/litmus-cluster-scope configured
+clusterrolebinding.rbac.authorization.k8s.io/litmus-cluster-scope configured
+💡 Connecting Chaos Delegate to ChaosCenter.
+🏃 Chaos Delegate is running!!
+
+🚀 Chaos Delegate connection successful!! 🎉
+👉 Litmus Chaos Delegates can be accessed here: http://localhost:9091/targets
+
 ```
