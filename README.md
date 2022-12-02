@@ -48,7 +48,7 @@ You can check your cluster up & running:
 k get pods -A
 ```
 
-This will output something similar: 
+This will output something similar:
 
 ```sh
 NAMESPACE            NAME                                               READY   STATUS    RESTARTS   AGE
@@ -190,3 +190,50 @@ workflow-controller-768f7d94dc-s5ns8        1/1     Running   0          3m19s
 ```
 
 🎉 At this point, we are ready to run chaos experiments!
+
+----
+
+## Installing Litmusctl
+
+The Litmuschaos command-line tool, [litmusctl](https://github.com/litmuschaos/litmusctl), allows you to manage litmuschaos's agent plane. You can use litmusctl to connect Chaos Delegates, create project, schedule Chaos Scenarios, disconnect Chaos Delegates and manage multiple litmuschaos accounts.
+
+Download latest version compatible to your OS from <https://github.com/litmuschaos/litmusctl> and follow installation guide.
+Verify your installation:
+
+```sh
+litmusctl version
+```
+
+This will output something similar:
+
+```sh
+Litmusctl version:  0.15.0
+Compatible ChaosCenter versions: 
+[ '2.9.0' '2.10.0' '2.11.0' '2.12.0' '2.13.0' '2.14.0' '3.0-beta1' ]
+```
+
+## Configure Listmusctl Config
+
+Litmusctl is using the `.litmusconfig` config file to manage multiple accounts
+
+1. If the --config flag is set, then only the given file is loaded. The flag may only be set once and no merging takes place.
+2. Otherwise, the `${HOME}/.litmusconfig` file is used, and no merging takes place.
+
+To setup an account with litmusctl:
+
+```sh
+litmusctl config set-account --endpoint="http://localhost:9091" --username="admin" --password="litmus"
+```
+
+To verify your setup:
+
+```sh
+litmusctl get projects
+```
+
+This will output something similar:
+
+```sh
+PROJECT ID                            PROJECT NAME     CREATED AT
+7f8a0a09-68db-48a7-b2df-92b2f5a5f521  admin's project  2022-12-02 10:58:57 +0000 GMT
+```
