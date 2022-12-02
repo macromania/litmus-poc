@@ -212,6 +212,18 @@ Compatible ChaosCenter versions:
 [ '2.9.0' '2.10.0' '2.11.0' '2.12.0' '2.13.0' '2.14.0' '3.0-beta1' ]
 ```
 
+>**Installation modes**
+>
+> Litmusctl can install a Chaos Delegate in two different modes.
+>
+> 1. cluster mode: With this mode, the Chaos Delegate can run the chaos in any namespace. It installs appropriate cluster roles and cluster role bindings to achieve this mode. It can be enabled by passing a flag --installation-mode=cluster
+>
+> 2. namespace mode: With this mode, the Chaos Delegate can run the chaos in its namespace. It installs appropriate roles and role bindings to achieve this mode. It can be enabled by passing a flag --installation-mode=namespace
+>
+> ⚠️⚠️⚠️ **Previously we installed Litmuschaos in `litmus` namespace. So, in this guide, we will install Chaos Delegate in `namespace mode`.** ⚠️⚠️⚠️
+
+
+
 ## Configure Listmusctl Config
 
 Litmusctl is using the `.litmusconfig` config file to manage multiple accounts
