@@ -220,9 +220,12 @@ Compatible ChaosCenter versions:
 >
 > 2. namespace mode: With this mode, the Chaos Delegate can run the chaos in its namespace. It installs appropriate roles and role bindings to achieve this mode. It can be enabled by passing a flag --installation-mode=namespace
 >
-> ⚠️⚠️⚠️ **Previously we installed Litmuschaos in `litmus` namespace. So, in this guide, we will install Chaos Delegate in `namespace mode`.** ⚠️⚠️⚠️
-
-
+> ⚠️⚠️⚠️ ⚠️⚠️⚠️ ⚠️⚠️⚠️
+>
+> **Previously we installed Litmuschaos in `litmus` namespace. So, in this guide, we will install Chaos Delegate in `namespace mode`.**
+>
+> ⚠️⚠️⚠️ ⚠️⚠️⚠️ ⚠️⚠️⚠️
+>
 
 ## Configure Listmusctl Config
 
@@ -248,4 +251,45 @@ This will output something similar:
 ```sh
 PROJECT ID                            PROJECT NAME     CREATED AT
 7f8a0a09-68db-48a7-b2df-92b2f5a5f521  admin's project  2022-12-02 10:58:57 +0000 GMT
+```
+
+Take a note of this Project ID or set it in your environment variables for further steps.
+
+```sh
+PROJECTID=7f8a0a09-68db-48a7-b2df-92b2f5a5f521
+```
+
+----
+
+## Connect to Chaos Delegate
+
+To get an overview of the Chaos Delegates available within a project, run the following command:
+
+```sh
+litmusctl get chaos-delegates
+```
+
+This will output something similar:
+
+```sh
+Enter the Project ID: 7f8a0a09-68db-48a7-b2df-92b2f5a5f521
+
+CHAOS DELEGATE ID                    CHAOS DELEGATE NAME   STATUS   REGISTRATION 
+f57d748b-f09a-4a9e-88f3-5c860103f7ca Self-Agent            ACTIVE   REGISTERED
+```
+
+## List Chaos Scenarios
+
+To list the created Chaos Scenarios within a project:
+
+```sh
+litmusctl get chaos-scenarios --project-id=""
+```
+
+As we have not run any chaos scenarios yet, this will output something similar:
+
+```sh
+CHAOS SCENARIO ID     CHAOS SCENARIO NAME     CHAOS SCENARIO TYPE     NEXT SCHEDULE     CHAOS DELEGATE ID  CHAOS DELEGATE NAME     LAST UPDATED BY
+
+Showing 0 of 0 Chaos Scenarios
 ```
